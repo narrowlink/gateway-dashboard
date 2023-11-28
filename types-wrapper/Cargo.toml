@@ -1,0 +1,24 @@
+[package]
+name = "types-wrapper"
+version = "0.0.1"
+authors = ['Narrowlink <opensource@narrowlink.com>']
+edition = "2018"
+license = 'MPL-2.0'
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+wasm-bindgen = "0.2.89"
+
+[profile.release]
+opt-level = "z"          # Optimize for size.
+lto = true               # Enable Link Time Optimization
+codegen-units = 1        # Reduce number of codegen units to increase optimizations.
+panic = "abort"          # Abort on panic
+debug = false            # Strip debug symbols from the binary.
+rpath = false            # Do not embed the path to the dynamic library in the binary.
+debug-assertions = false # Remove assertions from the binary.
+incremental = false      # Disable incremental compilation.
+overflow-checks = false  # Disable overflow checks.
+strip = true             # Automatically strip symbols from the binary.
